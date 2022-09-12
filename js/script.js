@@ -49,7 +49,8 @@ function generaSingolo() {
         }
     }
     let temp = document.createElement("div")
-    temp.innerHTML = tempArray.join('<br/>').slice(0,-5)
+    temp.innerHTML = tempArray.join('<br/>')
+    // .slice(0,-5)
 
     oggetto.appendChild(temp)
 
@@ -191,3 +192,5 @@ function setTextAlign() {
     })
 
 }
+
+
