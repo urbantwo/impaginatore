@@ -1,24 +1,24 @@
-// import { Formati } from "./formati.js";
+
 
 
 function generaSingolo() {
 
-    var altezza = document.getElementsByName('altezza')[0].value;
-    var base = document.getElementsByName('base')[0].value;
+    let altezza = document.getElementsByName('altezza')[0].value;
+    let base = document.getElementsByName('base')[0].value;
 
-    var infoEtichetta = document.getElementById("info-etichetta")
+    let infoEtichetta = document.getElementById("info-etichetta")
 
-    var unita = document.getElementById('unita-misura').value
-    var coloreSfondo = document.getElementsByName('sfondo')[0].value
+    let unita = document.getElementById('unita-misura').value
+    let coloreSfondo = document.getElementsByName('sfondo')[0].value
 
-    var oggetto = document.createElement('div')
+    let oggetto = document.createElement('div')
     oggetto.style.height = altezza + unita
     oggetto.style.width = base + unita
 
     oggetto.classList.add('classe')
     oggetto.classList.add('cancellabile')
 
-    var sfocatura = document.getElementsByName('sfocatura')[0].checked
+    let sfocatura = document.getElementsByName('sfocatura')[0].checked
 
     if(sfocatura){
         oggetto.classList.add('sfocatura')
@@ -29,25 +29,27 @@ function generaSingolo() {
     
     infoEtichetta.textContent = " | " + altezza + unita + ' x ' + base + unita
     
-    oggetto.onclick = function () { remove(this) }
+    // oggetto.onclick = function () { remove(this) }
     
 
-    // var riga1 = document.getElementById('riga1').value
+    // let riga1 = document.getElementById('riga1').value
     // if(riga1!=null && riga1!="" ){
-    //     var temp = document.createElement("div")
+    //     let temp = document.createElement("div")
     //     temp.innerText =riga1
     //     oggetto.appendChild(temp)
     // }
 
-    var righeTesto = document.getElementsByClassName('valore-testo')
-    var testoTemp = ''
-    for(var i=0;i<righeTesto.length;i ++){
-        if(righeTesto[i]!== null && righeTesto[i]!== ''){
-            testoTemp += righeTesto[i].value + "<br/>"
+    let righeTesto = document.getElementsByClassName('valore-testo')
+    let testoTemp = ''
+    let tempArray = []
+    for(const element of righeTesto){
+        if(element!= null && element!== ''){
+            // testoTemp += element.value + "<br/>"
+            tempArray.push(element.value)
         }
     }
-    var temp = document.createElement("div")
-    temp.innerHTML = testoTemp
+    let temp = document.createElement("div")
+    temp.innerHTML = tempArray.join('<br/>').slice(0,-5)
 
     oggetto.appendChild(temp)
 
@@ -65,7 +67,7 @@ function setSfondoColor(colore){
 
 function generaOggettoPrincipale(){
     
-    var oggetto = generaSingolo()
+    let oggetto = generaSingolo()
     oggetto.setAttribute('id', 'oggetto-principale')
     document.getElementById('dima').append(oggetto)
 
@@ -75,7 +77,7 @@ function generaOggettoPrincipale(){
 
 function generaContenitore() {
 
-    var contenitore = document.createElement("div")
+    let contenitore = document.createElement("div")
     contenitore.classList.add('contenitore')
 
     return contenitore
@@ -89,22 +91,30 @@ function remove(el) {
 }
 
 function generaFull() {
+    
 
+    if(document.getElementById('oggetto-principale') != null) {
+        reset()
+    }else{
+
+    
     
 
     generaOggettoPrincipale()
 
-    var proprieta = getHowMany(document.getElementsByName('base')[0].value, document.getElementsByName('altezza')[0].value)
+    let proprieta = getHowMany(document.getElementsByName('base')[0].value, document.getElementsByName('altezza')[0].value)
 
     for (let i = 0; i < proprieta.altezza; i++) {
-        var tempContenitore = generaContenitore()
+        let tempContenitore = generaContenitore()
 
         for (let j = 0; j < proprieta.larghezza; j++) {
-            var tempOggetto = generaSingolo()
+            let tempOggetto = generaSingolo()
             tempContenitore.append(tempOggetto)
         }
         document.getElementsByTagName('page')[0].append(tempContenitore)
 
+
+    }
     }
 
 
@@ -114,18 +124,18 @@ function generaFull() {
 
 function getHowMany() {
 
-    var page = document.getElementsByTagName('page')[0].getBoundingClientRect()
+    let page = document.getElementsByTagName('page')[0].getBoundingClientRect()
 
-    var altezzaPage = page.height
-    var larghezzaPage = page.width
+    let altezzaPage = page.height
+    let larghezzaPage = page.width
 
-    var oggettoPrincipale = document.getElementById('oggetto-principale').getBoundingClientRect()
-    var altezzaOggetto = oggettoPrincipale.height
-    var larghezzaOggetto = oggettoPrincipale.width
+    let oggettoPrincipale = document.getElementById('oggetto-principale').getBoundingClientRect()
+    let altezzaOggetto = oggettoPrincipale.height
+    let larghezzaOggetto = oggettoPrincipale.width
 
-    var tempAltezza = Math.floor(altezzaPage / altezzaOggetto)
-    var tempLarghezza = Math.floor(larghezzaPage / larghezzaOggetto)
-    var totaleEtichette = tempAltezza * tempLarghezza
+    let tempAltezza = Math.floor(altezzaPage / altezzaOggetto)
+    let tempLarghezza = Math.floor(larghezzaPage / larghezzaOggetto)
+    let totaleEtichette = tempAltezza * tempLarghezza
 
     return {
         'altezza': tempAltezza,
@@ -145,15 +155,10 @@ function reset() {
 
 
 // function caricaFormati(){
-//     var select = document.getElementById('lista-formati')
+//     let select = document.getElementById('lista-formati')
    
 
-//     for (var i=0;i<listaFormati.length;i++){
-//         var option = document.createElement("option")
-//         option.setAttribute('value',listaFormati[i].nome)
-//         option.text=listaFormati[i].nome
-//         select.appendChild(option)
-//     }
+
 
     
 // }
@@ -162,3 +167,27 @@ function reset() {
 
 // document.addEventListener('load',caricaFormati())
 
+function getSelectedStandard() {
+    let listaFormati = document.getElementById('lista-formati')
+
+    if (listaFormati.value != '-'){
+        let tempVar = listaFormati.value.split('x')
+
+        document.getElementsByName('base')[0].value = tempVar[0]
+        document.getElementsByName('altezza')[0].value = tempVar[1]
+    }else{
+        
+        document.getElementsByName('base')[0].value = ''
+        document.getElementsByName('altezza')[0].value = ''
+    }
+}
+
+
+function setTextAlign() {
+    let alignSelect = document.getElementById('testo-align')
+
+    document.querySelectorAll('.classe > div').forEach(elem => {
+        elem.style.textAlign = alignSelect.value
+    })
+
+}

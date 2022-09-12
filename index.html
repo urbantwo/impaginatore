@@ -16,7 +16,7 @@
 
         <div class="label">
             <span>Formati Standard:</span>
-            <select name="lista-formati" id="lista-formati" >
+            <select name="lista-formati" id="lista-formati" onchange="getSelectedStandard()" >
                 <option value="-">-</option>
                 <option value="70x36">70x36</option>
 
@@ -68,6 +68,36 @@
             <input type="text" name="riga3" id="riga3" class="valore-testo">
         </div>
 
+
+        <div class="label">
+            <span>Giustifica Testo</span>
+            <select name="testo-align" id="testo-align" onchange="setTextAlign()">
+                <option value="left">Sinistra</option>
+                <option value="center">Centro</option>
+                <option value="right">Destra</option>
+            </select>
+        </div>
+
+        <div class="label">
+            <span>Posizione in Etichetta</span>
+            <div class="radio-position">
+
+                <input type="radio" name="pos" value="t-l" id="" checked="true">
+                <input type="radio" name="pos" value="t-c" id="">
+                <input type="radio" name="pos" value="t-r" id="">
+            
+            <br>
+            <input type="radio" name="pos" value="c-l" id="">
+            <input type="radio" name="pos" value="c-c" id="">
+            <input type="radio" name="pos" value="c-r" id=""> <br>
+            
+            <input type="radio" name="pos" value="b-l" id="">
+            <input type="radio" name="pos" value="b-c" id="">
+            <input type="radio" name="pos" value="b-r" id=""> <br>
+        </div>
+            
+        </div>
+       
         
         
         

@@ -43,6 +43,13 @@ body{
     background-color: grey;
     /* border: solid 1px; */
     cursor: pointer;
+    display: flex;
+    padding: 7mm;
+}
+.classe > div {
+    width: 100%;
+    height: 100%;
+    display: flex;
 }
 
 .pulsante {
