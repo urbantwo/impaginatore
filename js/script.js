@@ -20,9 +20,9 @@ function generaSingolo() {
 
     let sfocatura = document.getElementsByName('sfocatura')[0].checked
 
-    if(sfocatura){
-        oggetto.classList.add('sfocatura')
-    }
+    // if(sfocatura){
+    //     oggetto.classList.add('sfocatura')
+    // }
     oggetto.style.backgroundColor = coloreSfondo
 
 
@@ -49,9 +49,28 @@ function generaSingolo() {
         }
     }
     let temp = document.createElement("div")
-    temp.innerHTML = tempArray.join('<br/>').slice(0,-5)
+    temp.innerHTML = tempArray.join('<br/>')
+        // .slice(0, -5)
 
+        
+        let file = document.getElementById('file')
+
+    let tempSfondo = document.createElement("div")
+    tempSfondo.classList.add('sfondo-img')
+    if(file.value != ''){
+        
+        let path = "./"+ file.value.substring(12,file.value.length);
+        tempSfondo.style.backgroundImage = "url('" + path + "')"
+
+    }
+
+    if(sfocatura){
+        tempSfondo.classList.add('sfocatura')
+    }
+    
     oggetto.appendChild(temp)
+    oggetto.appendChild(tempSfondo)
+
 
 
     return oggetto
@@ -190,4 +209,130 @@ function setTextAlign() {
         elem.style.textAlign = alignSelect.value
     })
 
+}
+
+function setLabelPosition(){
+    let elencoCheckbox = document.getElementsByName('pos')
+    let checkedValue = "t-l"
+    
+    for(const elem of elencoCheckbox){
+        if(elem.checked){
+            checkedValue = elem.value
+        }
+    }
+
+    let tempArray = checkedValue.split('-')
+
+    let classe = document.querySelectorAll('.classe > div')
+
+    for(const elem of classe){
+        elem.style.justifyContent = getPositionName(tempArray[1])
+        elem.style.alignItems = getPositionName(tempArray[0])
+    }
+    
+    
+    
+}
+
+function getPositionName (lettera) {
+    if(lettera === 't' || lettera ==='l'){
+        return position.start
+    }else if(lettera === 'b' || lettera ==='r'){
+        return position.end
+    } else {
+        return position.center
+    }
+}
+ 
+
+const position = {
+    'start':'flex-start',
+    'center':'center',
+    'end':'flex-end'
+}
+
+// function addFunctionToRadioButtons() {
+//     let elencoCheckbox = document.getElementsByName('pos')
+   
+    
+//     for(const elem of elencoCheckbox){
+//         if(elem.checked){
+//             elem.onclick = setLabelPosition()
+//         }
+//     }
+// }
+
+// document.body.addEventListener('change', ()=> {
+//     console.log('ciao')
+// })
+
+
+// document.getElementById('radio-position').addEventListener('click',setLabelPosition())
+
+// radio-position
+
+function changeFont(){
+
+ let select = document.getElementById('font-family')
+ if(select.value != '-'){
+    document.getElementsByTagName('page')[0].style.fontFamily = select.value;
+ }
+}
+
+function changeWeight(){
+
+    let select = document.getElementById('spessore')
+    
+       document.getElementsByTagName('page')[0].style.fontWeight = select.value;
+    
+   }
+
+   function changeFontSize(){
+
+    let select = document.getElementById('grandezza-font')
+    
+       document.getElementsByTagName('page')[0].style.fontSize = select.value +"px";
+    
+   }
+
+function changeBackgroundColor() {
+    let coloreSfondo = document.getElementsByName('sfondo')[0].value
+
+    for(const oggetto of document.getElementsByClassName('classe')){
+        oggetto.style.backgroundColor = coloreSfondo
+    }
+}
+
+function changeFontColor() {
+    let coloreSfondo = document.getElementsByName('colore-testo')[0].value
+
+    for(const oggetto of document.getElementsByClassName('classe')){
+        oggetto.style.color = coloreSfondo
+    }
+}
+
+function changeBackgroundImagePosition() {
+    let posizione = document.getElementsByName('posizione-sfondo')[0].value
+    if(posizione!= '-'){
+    for(const oggetto of document.getElementsByClassName('sfondo-img')){
+        oggetto.style.backgroundPosition = posizione
+    }
+}
+}
+
+function changeBackgroundImageSize() {
+    let grandezza = document.getElementsByName('grandezza-sfondo')[0].value
+    if(grandezza!= '-'){
+    for(const oggetto of document.getElementsByClassName('sfondo-img')){
+        oggetto.style.backgroundSize = grandezza
+    }
+}
+}
+
+function changeBackgroundImageOpacity() {
+    let opacita = document.getElementsByName('sfondo-opacity')[0].value
+    
+    for(const oggetto of document.getElementsByClassName('sfondo-img')){
+        oggetto.style.opacity = opacita
+    }
 }

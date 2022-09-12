@@ -8,6 +8,12 @@
     <script src="js/script.js"></script>
     <!-- <script type="module"  src="js/formati.js"></script> -->
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <div class="toolbar">
     
@@ -40,19 +46,53 @@
                 <option value="cm">cm</option>
             </select>
         </div>
-
+        
         <div class="label">
             <span><label for="sfocatura"> Bianco sfocato:</label></span>
             <input type="checkbox" name="sfocatura" id="sfocatura">
         </div>
-
+        
         
         
         <div class="label">
             <span>Colore sfondo:</span>
-            <input type="color" name="sfondo" id="sfondo" value="#dedede">
+            <input type="color" name="sfondo" id="sfondo" value="#dedede" onchange="changeBackgroundColor()">
         </div>
 
+        <div class="divider"></div>
+        <div class="label">
+            <span>Immagine sfondo:</span>
+            <input type="file" name="file" id="file">
+        </div>
+        <div class="label">
+            <span>Posizione Sfondo:</span>
+            <select name="posizione-sfondo" id="posizione-sfondo" onchange="changeBackgroundImagePosition()">
+                <option value="-">-</option>
+                <option value="bottom">sotto</option>
+                <option value="top">sopra</option>
+                <option value="center">centro</option>
+                <option value="left">sinistra</option>
+                <option value="right">destra</option>
+                
+            </select>
+        </div>
+        <div class="label">
+            <span>Grandezza Sfondo:</span>
+            <select name="grandezza-sfondo" id="grandezza-sfondo" onchange="changeBackgroundImageSize()">
+
+                <option value="auto">auto</option>
+                <option value="cover">cover</option>
+                <option value="contain">contain</option>
+                
+                
+            </select>
+        </div>
+        <div class="label">
+            <span>Trasparenza Sfondo:</span>
+            <input type="range" name="sfondo-opacity" value="1" id="sfondo-opacity" min="0" max="1" step="0.05" onchange="changeBackgroundImageOpacity()">                
+        </div>
+        <div class="divider"></div>
+        
         <div class="label">
             <span><label for="sfocatura"> Riga 1:</label></span>
             <input type="text" name="riga1" id="riga1" class="valore-testo">
@@ -80,23 +120,47 @@
 
         <div class="label">
             <span>Posizione in Etichetta</span>
-            <div class="radio-position">
+            <div class="radio-position" id="radio-position">
+            
+                <input onclick="setLabelPosition()" type="radio" name="pos" value="t-l" id="" checked="true">
+                <input onclick="setLabelPosition()" type="radio" name="pos" value="t-c" id="">
+                <input onclick="setLabelPosition()" type="radio" name="pos" value="t-r" id="">
+            
+                <br>
+                <input onclick="setLabelPosition()" type="radio" name="pos" value="c-l" id="">
+                <input onclick="setLabelPosition()" type="radio" name="pos" value="c-c" id="">
+                <input onclick="setLabelPosition()" type="radio" name="pos" value="c-r" id=""> <br>
+            
+                <input onclick="setLabelPosition()" type="radio" name="pos" value="b-l" id="">
+                <input onclick="setLabelPosition()" type="radio" name="pos" value="b-c" id="">
+                <input onclick="setLabelPosition()" type="radio" name="pos" value="b-r" id=""> <br>
+        </div>
 
-                <input type="radio" name="pos" value="t-l" id="" checked="true">
-                <input type="radio" name="pos" value="t-c" id="">
-                <input type="radio" name="pos" value="t-r" id="">
-            
-            <br>
-            <input type="radio" name="pos" value="c-l" id="">
-            <input type="radio" name="pos" value="c-c" id="">
-            <input type="radio" name="pos" value="c-r" id=""> <br>
-            
-            <input type="radio" name="pos" value="b-l" id="">
-            <input type="radio" name="pos" value="b-c" id="">
-            <input type="radio" name="pos" value="b-r" id=""> <br>
-        </div>
-            
-        </div>
+        
+    </div>
+
+    <div class="label">
+        <span>Font</span>
+        <select name="font-family" id="font-family" onchange="changeFont()">
+            <option value="-">-</option>
+            <option value="Roboto">Roboto</option>
+            <option value="Montserrat">Montserrat</option>
+        </select>
+    </div>
+    <div class="label">
+        <span>Spessore</span>
+        <input type="range" name="spessore" id="spessore" min="100" max="900" step="100" onchange="changeWeight()">
+    </div>
+    <div class="label">
+        <span>Grandezza</span>
+        <input type="number" name="grandezza-font" id="grandezza-font" value="20" onchange="changeFontSize()">
+    </div>
+
+    <div class="label">
+        <span>Colore testo:</span>
+        <input type="color" name="colore-testo" id="colore-testo" value="black" onchange="changeFontColor()">
+    </div>
+    <div class="divider"></div>
        
         
         
