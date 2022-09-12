@@ -50,8 +50,8 @@ function generaSingolo() {
     }
     let temp = document.createElement("div")
     temp.innerHTML = tempArray.join('<br/>')
-<<<<<<< HEAD
-        // .slice(0, -5)
+
+    
 
         
         let file = document.getElementById('file')
@@ -64,9 +64,6 @@ function generaSingolo() {
         tempSfondo.style.backgroundImage = "url('" + path + "')"
 
     }
-=======
-    // .slice(0,-5)
->>>>>>> 9665593e89c29d1df5980246d94ed52e85b4909d
 
     if(sfocatura){
         tempSfondo.classList.add('sfocatura')
@@ -215,7 +212,6 @@ function setTextAlign() {
 
 }
 
-<<<<<<< HEAD
 function setLabelPosition(){
     let elencoCheckbox = document.getElementsByName('pos')
     let checkedValue = "t-l"
@@ -341,6 +337,3 @@ function changeBackgroundImageOpacity() {
         oggetto.style.opacity = opacita
     }
 }
-=======
-
->>>>>>> 9665593e89c29d1df5980246d94ed52e85b4909d
