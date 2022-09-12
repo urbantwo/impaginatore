@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+    <!-- <script type="module"  src="js/formati.js"></script> -->
+    <title>Document</title>
+</head>
+<div class="toolbar">
+    
+    <div class="parte-input">
+        <h3>Etichetta <span id="info-etichetta"></span></h3>
+
+        <div class="label">
+            <span>Formati Standard:</span>
+            <select name="lista-formati" id="lista-formati" >
+                <option value="-">-</option>
+                <option value="70x36">70x36</option>
+
+            </select>
+        </div>
+        
+        <div class="label">
+            <span>Larghezza:</span>
+            <input type="text" name="base" placeholder="larghezza">
+        </div>
+        <div class="label">
+            <span>Altezza:</span>
+            <input type="text" name="altezza" placeholder="altezza">
+        </div>
+
+        <div class="label">
+            <span>Unità di misura:</span>
+            <select name="unita-misura" id="unita-misura">
+                <option value="mm">mm</option>
+                <option value="px">px</option>
+                <option value="cm">cm</option>
+            </select>
+        </div>
+
+        <div class="label">
+            <span><label for="sfocatura"> Bianco sfocato:</label></span>
+            <input type="checkbox" name="sfocatura" id="sfocatura">
+        </div>
+
+        
+        
+        <div class="label">
+            <span>Colore sfondo:</span>
+            <input type="color" name="sfondo" id="sfondo" value="#dedede">
+        </div>
+
+        <div class="label">
+            <span><label for="sfocatura"> Riga 1:</label></span>
+            <input type="text" name="riga1" id="riga1" class="valore-testo">
+        </div>
+
+        <div class="label">
+            <span><label for="sfocatura"> Riga 2:</label></span>
+            <input type="text" name="riga2" id="riga2" class="valore-testo">
+        </div>
+
+        <div class="label">
+            <span><label for="sfocatura"> Riga 3:</label></span>
+            <input type="text" name="riga3" id="riga3" class="valore-testo">
+        </div>
+
+        
+        
+        
+        
+        <div class="pulsante" style="background-color:rgb(112, 224, 99) ;" onclick="generaFull()"> Genera </div>
+        <div class="pulsante" style="background-color:rgb(218, 73, 73) ;" onclick="reset()"> Reset </div>
+        <div class="pulsante" style="background-color:rgb(159, 159, 159) ;" onclick="print()"> Stampa </div>
+    </div>
+
+    <div id="dima"></div>
+</div>
+
+<page>
+
+</page>
+
+
+
+
+</html>
